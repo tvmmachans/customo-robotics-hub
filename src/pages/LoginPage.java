@@ -76,6 +76,9 @@ public class LoginPage extends JFrame implements ActionListener {
 
             if (username.equals("admin") && password.equals("1234")) {
                 JOptionPane.showMessageDialog(this, "✅ Login Successful!");
+                // Open Dashboard and close login window
+                new Dashboard();
+                this.dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "❌ Invalid Username or Password.");
             }
@@ -87,5 +90,18 @@ public class LoginPage extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(LoginPage::new); // Run in Event Dispatch Thread
+    }
+}
+
+// Minimal Dashboard class to show after login
+class Dashboard extends JFrame {
+    public Dashboard() {
+        setTitle("Dashboard");
+        setSize(400, 200);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        JLabel label = new JLabel("Welcome to the Dashboard!", SwingConstants.CENTER);
+        add(label);
+        setVisible(true);
     }
 }
